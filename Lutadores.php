@@ -73,7 +73,7 @@ and open the template in the editor.
             public function apresentacao($obj){
             echo "Ele vem de {$obj->getNacionalidade()}, tem {$obj->getIdade()} anos, "
             . "vem com uma série de {$obj->getVitorias()} vitórias, {$obj->getDerrotas()} derrotas e {$obj->getEmpates()} empates ."
-            . " O nome do lutador éééééé... {$obj->getNome()} !!!!!!";
+            . " O nome do lutador éééééé... {$obj->getNome()} !!!!!! <br>";
                 
             }
             public function __construct($no, $ida, $na) {
@@ -83,6 +83,15 @@ and open the template in the editor.
                 $this->derrotas = 0;
                 $this->empates = 0;
                 $this->vitorias = 0;
+            }
+            function perderLuta(){
+                $this->setDerrotas($this->getDerrotas()+1);
+            }
+            function ganharLuta(){
+                $this->setVitorias($this->getVitorias()+1);
+            }
+            function empatarLuta(){
+                $this->setEmpates($this->getEmpates()+1);
             }
         }
         

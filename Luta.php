@@ -1,22 +1,58 @@
-<html>
-    <head> </head>
-    <body>
-        <pre>
 <?php
+
 require_once 'Lutadores.php';
 
 
-$lutador = [];
-$lutador[0] = new Lutador("chunli",20,"Japão");
-$lutador[1] = new Lutador("ryu",22,"Japão");
-$lutador[2] = new Lutador("Zangief", 43, "Russia");
-$lutador[3] = new Lutador("guile",40,"USA");
-$lutador[4] = new Lutador("bison",47,"Desconhecido");
-$lutador[5] = new Lutador("Blanka",30,"Brasil");
+ class Luta{
+    private $desafiado;
+    private $desafiante;
+    
+    
+    function getDesafiado() {
+        return $this->desafiado;
+    }
+
+    function getDesafiante() {
+        return $this->desafiante;
+    }
+
+    function setDesafiado($desafiado) {
+        $this->desafiado = $desafiado;
+    }
+
+    function setDesafiante($desafiante) {
+        $this->desafiante = $desafiante;
+    }
+    
+    function inicioLuta($nome1,$nome2){
+        echo "Senhoras e senhores, apenas um sairá vivo...<br> $nome1 VS $nome2 <br>"
+                ." QUE COMECE A LUTA!";
+    }
+    function lutar($l1, $l2){
+        if ($l1 != $l2){
+           $venc = rand(0, 2);
+            
+           switch ($venc){
+               case 0: $l1->empatarLuta(); 
+                       $l2->empatarLuta();
+                       echo "EMPATE!!!";
+                break;
+            
+               case 1: $l1->ganharLuta(); 
+                       $l2->perderLuta();
+                       echo "O vencedor é {$l1->getNome()})";
+                break;
+                case 2: $l1->perderLuta(); 
+                       $l2->ganharLuta();
+                       echo "O vencedor é {$l2->getNome()})";
+                break;
+           }
+           
+        } else{
+            echo "Os lutadores são os mesmos";
+        }
+        
+    }
 
 
-print_r($lutador[1]);
-$lutador[1]->apresentacao($lutador[1]);
-?>
-        </pre>
-</body>
+}
